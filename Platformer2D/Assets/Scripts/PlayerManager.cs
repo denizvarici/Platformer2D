@@ -78,7 +78,7 @@ public class PlayerManager : MonoBehaviour
     void Update()
     {
         OnGround();
-        ChooseWeapon();
+        SelectWeapon();
     }
 
     private void FixedUpdate()
@@ -141,7 +141,7 @@ public class PlayerManager : MonoBehaviour
         }
     }
     
-    void ChooseWeapon()
+    void SelectWeapon()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
