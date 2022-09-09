@@ -25,6 +25,8 @@ public class PlayerManager : MonoBehaviour
     private bool isGrounded = false;
     [SerializeField]
     private bool doubleJump = false;
+    [SerializeField]
+    private bool lookingRight = true;
 
     //GroundChecking
     [SerializeField]
@@ -38,6 +40,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private GameObject[] playerWeapons;
     private int currentWeapon;
+    [SerializeField]
+    private Transform bulletWay;
 
     
 
@@ -79,6 +83,7 @@ public class PlayerManager : MonoBehaviour
     {
         OnGround();
         SelectWeapon();
+        TurnPlayer();
     }
 
     private void FixedUpdate()
@@ -161,6 +166,43 @@ public class PlayerManager : MonoBehaviour
         
     }
 
+    void TurnPlayer()
+    {
+        //Vector3 mousePosition = Camera.main.WorldToScreenPoint(Input.mousePosition);
+        //Vector2 playerPosition = transform.position;
+
+        //mousePosition.x -= playerPosition.x;
+        //mousePosition.y -= playerPosition.y;
+
+        //float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
+
+        Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        if (mousePosition.x > transform.position.x && !lookingRight)
+        {
+            FlipPlayer();
+            FlipBulletWay(0);
+        }
+        if(mousePosition.x < transform.position.x && lookingRight)
+        {    
+            FlipPlayer();
+            FlipBulletWay(-180f);
+        }
+        void FlipPlayer()
+        {
+            lookingRight = !lookingRight;
+            var tempScale = transform.localScale;
+            tempScale.x *= -1;
+            transform.localScale = tempScale;
+        }
+        void FlipBulletWay(float rotation)
+        {
+            var tempRotation = bulletWay.localRotation;
+            tempRotation = Quaternion.Euler(0, 0, rotation);
+            bulletWay.localRotation = tempRotation;
+        }
+    }
+
+    
 
     
     
