@@ -8,6 +8,17 @@ public class SwordManager : MonoBehaviour
     InputManager inputManager;
     InputAction attackInput;
 
+    //Hit Enemy
+    [SerializeField]
+    private Transform attackPointTransform;
+    [SerializeField]
+    private float attackPointRadius;
+    [SerializeField]
+    private LayerMask attackPointLayer;
+
+    //Sword features
+    [SerializeField]
+    private int attackDamage;
     private void Awake()
     {
         inputManager = new InputManager();
@@ -35,6 +46,16 @@ public class SwordManager : MonoBehaviour
 
     void Attack(InputAction.CallbackContext context)
     {
-        Debug.Log("Kýlýçla saldýrý!!");
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPointTransform.position, attackPointRadius, attackPointLayer);
+
+        foreach (var enemy in hitEnemies)
+        {
+            enemy.GetComponent<EnemyManager>().TakeDamage(attackDamage);
+        }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(attackPointTransform.position, attackPointRadius);
     }
 }
