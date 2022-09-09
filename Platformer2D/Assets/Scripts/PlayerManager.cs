@@ -10,11 +10,11 @@ public class PlayerManager : MonoBehaviour
     InputManager inputManager;
     InputAction moveInput;
     InputAction jumpInput;
-    
+
 
     //Player Components
     private Rigidbody2D playerRigidbody;
-    
+
 
     //Player features
     [SerializeField]
@@ -36,14 +36,16 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private LayerMask groundCheckerLayer;
 
-    //Gun System
+    //Weapon System
     [SerializeField]
     private GameObject[] playerWeapons;
     private int currentWeapon;
     [SerializeField]
     private Transform bulletWay;
+    [SerializeField]
+    private Transform attackPoint;
 
-    
+
 
 
     private void Awake()
@@ -60,25 +62,25 @@ public class PlayerManager : MonoBehaviour
         jumpInput.Enable();
         jumpInput.performed += Jump;
 
-        
-        
+
+
     }
     private void OnDisable()
     {
         moveInput.Disable();
         jumpInput.Disable();
-        
+
     }
 
 
     void Start()
     {
         playerRigidbody = GetComponent<Rigidbody2D>();
-        
-        
+
+
     }
 
-    
+
     void Update()
     {
         OnGround();
@@ -104,9 +106,9 @@ public class PlayerManager : MonoBehaviour
         if (isGrounded)
         {
             doubleJump = true;
-            playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x,0f);
+            playerRigidbody.velocity = new Vector2(playerRigidbody.velocity.x, 0f);
             playerRigidbody.AddForce(Vector2.up * jumpForce);
-            
+
         }
         else
         {
@@ -118,11 +120,11 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
-    
+
 
     void OnGround()
     {
-        isGrounded =  Physics2D.OverlapCircle(groundCheckerTransform.position, groundCheckerRadius, groundCheckerLayer);
+        isGrounded = Physics2D.OverlapCircle(groundCheckerTransform.position, groundCheckerRadius, groundCheckerLayer);
     }
 
     private void OnDrawGizmosSelected()
@@ -145,13 +147,13 @@ public class PlayerManager : MonoBehaviour
             }
         }
     }
-    
+
     void SelectWeapon()
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
             SwitchWeapon(0);
-            
+
         }
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
@@ -163,29 +165,23 @@ public class PlayerManager : MonoBehaviour
             SwitchWeapon(2);
 
         }
-        
+
     }
 
     void TurnPlayer()
     {
-        //Vector3 mousePosition = Camera.main.WorldToScreenPoint(Input.mousePosition);
-        //Vector2 playerPosition = transform.position;
-
-        //mousePosition.x -= playerPosition.x;
-        //mousePosition.y -= playerPosition.y;
-
-        //float angle = Mathf.Atan2(mousePosition.y, mousePosition.x) * Mathf.Rad2Deg;
-
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (mousePosition.x > transform.position.x && !lookingRight)
         {
             FlipPlayer();
             FlipBulletWay(0);
+            FlipAttackPoint(0);
         }
-        if(mousePosition.x < transform.position.x && lookingRight)
-        {    
+        if (mousePosition.x < transform.position.x && lookingRight)
+        {
             FlipPlayer();
             FlipBulletWay(-180f);
+            FlipAttackPoint(-180f);
         }
         void FlipPlayer()
         {
@@ -200,10 +196,16 @@ public class PlayerManager : MonoBehaviour
             tempRotation = Quaternion.Euler(0, 0, rotation);
             bulletWay.localRotation = tempRotation;
         }
+        void FlipAttackPoint(float rotation)
+        {
+            var tempRotation = attackPoint.localRotation;
+            tempRotation = Quaternion.Euler(0, 0, rotation);
+            attackPoint.localRotation = tempRotation;
+        }
     }
 
-    
 
-    
-    
+
+
+
 }

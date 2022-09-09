@@ -131,7 +131,7 @@ Transform:
   m_GameObject: {fileID: 8373562933947520246}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.83, y: 0.14, z: 0}
-  m_LocalScale: {x: -1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2887107048676380640}
@@ -205,9 +205,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 300
   currentHealth: 0
-  lookingRight: 0
+  lookingRight: 1
   enemySpeed: 40
-  test: 1
+  patrolMode: 0
+  patrolTimer: 0
+  patrolBaseTimer: 2
+  shootMode: 0
+  chaseMode: 0
+  playerTransform: {fileID: 0}
+  chaseSpeed: 0.5
 --- !u!70 &8276903039542248835
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -244,4 +250,4 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4

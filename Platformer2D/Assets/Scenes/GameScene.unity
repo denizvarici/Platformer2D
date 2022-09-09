@@ -980,7 +980,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1744441790}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.17, y: 1.63, z: 0}
+  m_LocalPosition: {x: -5.64, y: -1.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1065,6 +1065,7 @@ MonoBehaviour:
   - {fileID: 95062432}
   - {fileID: 790773372}
   bulletWay: {fileID: 1471928320}
+  attackPoint: {fileID: 2101080986}
 --- !u!1 &1780725108
 GameObject:
   m_ObjectHideFlags: 0
@@ -1120,8 +1121,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2101080985}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.036, y: 0.039, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0.132, y: 0.125, z: 0}
+  m_LocalScale: {x: 0, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 95062434}
@@ -1134,6 +1135,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1816026300, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
+      propertyPath: m_Mass
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1816026300, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
+      propertyPath: m_GravityScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1851195663638053237, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
+      propertyPath: chaseSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1851195663638053237, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
+      propertyPath: recoilAfterHit
+      value: 150
+      objectReference: {fileID: 0}
+    - target: {fileID: 1851195663638053237, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
+      propertyPath: playerTransform
+      value: 
+      objectReference: {fileID: 1744441792}
+    - target: {fileID: 1851195663638053237, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
+      propertyPath: attackPointTransform
+      value: 
+      objectReference: {fileID: 2101080986}
+    - target: {fileID: 2983452527335015452, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189731560800673218, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
+      propertyPath: m_Size.x
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7189731560800673218, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
+      propertyPath: m_Size.y
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 8373562933947520246, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -1144,11 +1181,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8373562933947520249, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.83
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8373562933947520249, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.03
+      value: -0.93
       objectReference: {fileID: 0}
     - target: {fileID: 8373562933947520249, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
       propertyPath: m_LocalPosition.z
