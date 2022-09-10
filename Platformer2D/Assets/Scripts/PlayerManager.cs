@@ -173,22 +173,31 @@ public class PlayerManager : MonoBehaviour
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (mousePosition.x > transform.position.x && !lookingRight)
         {
-            FlipPlayer();
+            //FlipPlayer();
+            FlipPlayerRotation(0);
             FlipBulletWay(0);
             FlipAttackPoint(0);
         }
         if (mousePosition.x < transform.position.x && lookingRight)
         {
-            FlipPlayer();
+            //FlipPlayer();
+            FlipPlayerRotation(-180f);
             FlipBulletWay(-180f);
             FlipAttackPoint(-180f);
         }
-        void FlipPlayer()
+        //void FlipPlayer()
+        //{
+        //    lookingRight = !lookingRight;
+        //    var tempScale = transform.localScale;
+        //    tempScale.x *= -1;
+        //    transform.localScale = tempScale;
+        //}
+        void FlipPlayerRotation(float rotation)
         {
             lookingRight = !lookingRight;
-            var tempScale = transform.localScale;
-            tempScale.x *= -1;
-            transform.localScale = tempScale;
+            var tempRotation = transform.localRotation;
+            tempRotation = Quaternion.Euler(0, rotation, 0);
+            transform.localRotation = tempRotation;
         }
         void FlipBulletWay(float rotation)
         {

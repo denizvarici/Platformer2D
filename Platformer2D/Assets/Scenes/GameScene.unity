@@ -227,6 +227,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   attackDamage: 5
+  recoilAfterHit: 0
 --- !u!1 &102884237
 GameObject:
   m_ObjectHideFlags: 0
@@ -554,7 +555,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &790773373
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1135,22 +1136,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1816026300, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
-      propertyPath: m_Mass
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1816026300, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
-      propertyPath: m_GravityScale
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1851195663638053237, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
-      propertyPath: chaseSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1851195663638053237, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
-      propertyPath: recoilAfterHit
-      value: 150
-      objectReference: {fileID: 0}
     - target: {fileID: 1851195663638053237, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
       propertyPath: playerTransform
       value: 
@@ -1159,21 +1144,13 @@ PrefabInstance:
       propertyPath: attackPointTransform
       value: 
       objectReference: {fileID: 2101080986}
-    - target: {fileID: 2983452527335015452, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189731560800673218, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
-      propertyPath: m_Size.x
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 7189731560800673218, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
-      propertyPath: m_Size.y
-      value: 20
-      objectReference: {fileID: 0}
     - target: {fileID: 8373562933947520246, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8373562933947520246, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8373562933947520249, guid: ea38d1114db9f37449030841cac2ae6e, type: 3}
       propertyPath: m_RootOrder

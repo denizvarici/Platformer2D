@@ -19,6 +19,7 @@ public class SwordManager : MonoBehaviour
     //Sword features
     [SerializeField]
     private int attackDamage;
+    
     private void Awake()
     {
         inputManager = new InputManager();
@@ -50,8 +51,8 @@ public class SwordManager : MonoBehaviour
 
         foreach (var enemy in hitEnemies)
         {
-            enemy.GetComponent<EnemyManager>().TakeDamage(attackDamage);
-            //enemy.GetComponent<Rigidbody2D>().AddForce(attackPointTransform.right * 0.5f);
+            enemy.GetComponent<EnemyManager>().TakeDamage(attackDamage,"sword");
+            //enemy.GetComponent<Rigidbody2D>().AddForce(attackPointTransform.right * recoilAfterHit);
         }
     }
 

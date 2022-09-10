@@ -48,7 +48,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2887107048676380640
 Transform:
   m_ObjectHideFlags: 0
@@ -88,7 +88,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 10, y: 3}
+  m_Size: {x: 40, y: 20}
   m_EdgeRadius: 0
 --- !u!114 &6864971532731747835
 MonoBehaviour:
@@ -213,7 +213,9 @@ MonoBehaviour:
   shootMode: 0
   chaseMode: 0
   playerTransform: {fileID: 0}
-  chaseSpeed: 0.5
+  chaseSpeed: 2
+  attackPointTransform: {fileID: 0}
+  recoilAfterHit: 150
 --- !u!70 &8276903039542248835
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

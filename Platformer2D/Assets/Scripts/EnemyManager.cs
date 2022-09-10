@@ -38,6 +38,8 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private Transform attackPointTransform;
     [SerializeField]
+    private Transform bulletWayTransform;
+    [SerializeField]
     private float recoilAfterHit;
 
     //Enemy Components
@@ -53,6 +55,8 @@ public class EnemyManager : MonoBehaviour
         //InvokeRepeating("PatrolWay", 0f, 3f);
         playerTransform = GameObject.FindWithTag("Player").transform;
         patrolTimer = patrolBaseTimer;
+        playerTransform = GameObject.Find("Player").transform;
+        
     }
 
     void Update()
@@ -70,9 +74,9 @@ public class EnemyManager : MonoBehaviour
 
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(int damage,string weaponName)
     {
-        enemyRigidbody.AddForce(attackPointTransform.right * recoilAfterHit);
+        enemyRigidbody.AddForce(playerTransform.right * recoilAfterHit);
         currentHealth -= damage;
 
         if (currentHealth <= 0)

@@ -6,6 +6,11 @@ public class BulletManager : MonoBehaviour
 {
     [SerializeField]
     private int bulletDamage;
+    
+    public Transform bulletWayTransform;
+    
+
+    
     void Start()
     {
         
@@ -21,7 +26,9 @@ public class BulletManager : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            collision.gameObject.GetComponent<EnemyManager>().TakeDamage(bulletDamage);
+            collision.gameObject.GetComponent<EnemyManager>().TakeDamage(bulletDamage,"pistol");
+            
+
             Destroy(this.gameObject);
         }
     }

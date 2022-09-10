@@ -46,9 +46,9 @@ public class PistolManager : MonoBehaviour
 
     void Shoot(InputAction.CallbackContext context)
     {
-        GameObject bulletObject = (GameObject)Instantiate(bulletPrefab, bulletWay.position, Quaternion.identity);
+        GameObject bulletObject = (GameObject)Instantiate(bulletPrefab,bulletWay.position, Quaternion.identity);
         bulletObject.GetComponent<Rigidbody2D>().AddForce(bulletWay.right * bulletSpeed, ForceMode2D.Impulse);
-        Destroy(bulletObject, destroyBulletTime);
+        //Destroy(bulletObject, destroyBulletTime);
     }
 
     
