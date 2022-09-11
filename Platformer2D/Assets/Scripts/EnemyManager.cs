@@ -47,6 +47,11 @@ public class EnemyManager : MonoBehaviour
     //Getting hit   
     [SerializeField]
     private float recoilAfterHit;
+    [SerializeField]
+    private float flashTimeAfterHit;
+    private Color originalColor;
+    [SerializeField]
+    private SpriteRenderer enemyRenderer;
 
     //Enemy Components
     private Rigidbody2D enemyRigidbody;
@@ -63,7 +68,7 @@ public class EnemyManager : MonoBehaviour
         patrolTimer = patrolBaseTimer;
         shootTimer = shootBaseTimer;
         playerTransform = GameObject.Find("Player").transform;
-        
+        originalColor = enemyRenderer.color;
 
     }
 
@@ -88,12 +93,25 @@ public class EnemyManager : MonoBehaviour
     {
         enemyRigidbody.AddForce(playerTransform.right * recoilAfterHit);
         currentHealth -= damage;
+        FlashRed();
 
         if (currentHealth <= 0)
         {
             Destroy(this.gameObject);
         }
     }
+
+    void FlashRed()
+    {
+        Color test = new Color32(155, 0, 0, 255);
+        enemyRenderer.color = test;
+        Invoke("ResetColor", flashTimeAfterHit);
+    }
+    void ResetColor()
+    {
+        enemyRenderer.color = originalColor;
+    }
+
 
 
     void Patrol()
