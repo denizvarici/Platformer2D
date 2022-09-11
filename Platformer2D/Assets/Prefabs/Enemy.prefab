@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1869279250
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1869279251}
+  m_Layer: 7
+  m_Name: ShootPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1869279251
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869279250}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.394, y: -0.027, z: 0}
+  m_LocalScale: {x: 0, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8373562933947520249}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2071287066849472557
 GameObject:
   m_ObjectHideFlags: 0
@@ -136,6 +167,7 @@ Transform:
   m_Children:
   - {fileID: 2887107048676380640}
   - {fileID: 7418470298571508349}
+  - {fileID: 1869279251}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -211,11 +243,15 @@ MonoBehaviour:
   patrolTimer: 0
   patrolBaseTimer: 2
   shootMode: 0
+  shootPoint: {fileID: 1869279251}
+  enemyBulletPrefab: {fileID: 1771138555257921137, guid: 64554307f0f2a7849a051c830885f4ec, type: 3}
+  enemyBulletSpeed: 10
+  shootTimer: 0
+  shootBaseTimer: 2
   chaseMode: 0
   playerTransform: {fileID: 0}
   chaseSpeed: 2
-  attackPointTransform: {fileID: 0}
-  recoilAfterHit: 150
+  recoilAfterHit: 100
 --- !u!70 &8276903039542248835
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

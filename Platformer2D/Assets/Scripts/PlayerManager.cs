@@ -40,10 +40,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField]
     private GameObject[] playerWeapons;
     private int currentWeapon;
-    [SerializeField]
-    private Transform bulletWay;
-    [SerializeField]
-    private Transform attackPoint;
+    
 
 
 
@@ -172,45 +169,20 @@ public class PlayerManager : MonoBehaviour
     {
         Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         if (mousePosition.x > transform.position.x && !lookingRight)
-        {
-            //FlipPlayer();
-            FlipPlayerRotation(0);
-            FlipBulletWay(0);
-            FlipAttackPoint(0);
+        {           
+            FlipPlayerRotation(0);            
         }
         if (mousePosition.x < transform.position.x && lookingRight)
-        {
-            //FlipPlayer();
-            FlipPlayerRotation(-180f);
-            FlipBulletWay(-180f);
-            FlipAttackPoint(-180f);
+        {            
+            FlipPlayerRotation(-180f);            
         }
-        //void FlipPlayer()
-        //{
-        //    lookingRight = !lookingRight;
-        //    var tempScale = transform.localScale;
-        //    tempScale.x *= -1;
-        //    transform.localScale = tempScale;
-        //}
         void FlipPlayerRotation(float rotation)
         {
             lookingRight = !lookingRight;
             var tempRotation = transform.localRotation;
             tempRotation = Quaternion.Euler(0, rotation, 0);
             transform.localRotation = tempRotation;
-        }
-        void FlipBulletWay(float rotation)
-        {
-            var tempRotation = bulletWay.localRotation;
-            tempRotation = Quaternion.Euler(0, 0, rotation);
-            bulletWay.localRotation = tempRotation;
-        }
-        void FlipAttackPoint(float rotation)
-        {
-            var tempRotation = attackPoint.localRotation;
-            tempRotation = Quaternion.Euler(0, 0, rotation);
-            attackPoint.localRotation = tempRotation;
-        }
+        }        
     }
 
 

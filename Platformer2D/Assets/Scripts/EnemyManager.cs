@@ -25,6 +25,16 @@ public class EnemyManager : MonoBehaviour
     //Shoot to player
     [SerializeField]
     private bool shootMode = false;
+    [SerializeField]
+    private Transform shootPoint;
+    [SerializeField]
+    private GameObject enemyBulletPrefab;
+    [SerializeField]
+    private float enemyBulletSpeed;
+    [SerializeField]
+    private float shootTimer;
+    [SerializeField]
+    private float shootBaseTimer;
 
     //Chasing  Player
     [SerializeField]
@@ -34,19 +44,15 @@ public class EnemyManager : MonoBehaviour
     [SerializeField]
     private float chaseSpeed;
 
-    //Getting hit
-    [SerializeField]
-    private Transform attackPointTransform;
-    [SerializeField]
-    private Transform bulletWayTransform;
+    //Getting hit   
     [SerializeField]
     private float recoilAfterHit;
 
     //Enemy Components
     private Rigidbody2D enemyRigidbody;
-    
 
-    
+
+
 
     void Start()
     {
@@ -55,14 +61,16 @@ public class EnemyManager : MonoBehaviour
         //InvokeRepeating("PatrolWay", 0f, 3f);
         playerTransform = GameObject.FindWithTag("Player").transform;
         patrolTimer = patrolBaseTimer;
+        shootTimer = shootBaseTimer;
         playerTransform = GameObject.Find("Player").transform;
         
+
     }
 
     void Update()
     {
         
-        
+
     }
 
 
@@ -71,10 +79,12 @@ public class EnemyManager : MonoBehaviour
         ChangePatrolWay();
         Patrol();
         Chase();
-
+        Shoot();
+        
+        
     }
 
-    public void TakeDamage(int damage,string weaponName)
+    public void TakeDamage(int damage, string weaponName)
     {
         enemyRigidbody.AddForce(playerTransform.right * recoilAfterHit);
         currentHealth -= damage;
@@ -98,6 +108,7 @@ public class EnemyManager : MonoBehaviour
             {
                 enemyRigidbody.velocity = new Vector2(-1 * enemySpeed * Time.fixedDeltaTime, enemyRigidbody.velocity.y);
             }
+            
         }
 
     }
@@ -122,11 +133,26 @@ public class EnemyManager : MonoBehaviour
         temp.x *= -1;
         transform.localScale = temp;
     }
-    
+
+    void ChangeShootPoint()
+    {
+        
+        if (lookingRight)
+        {
+            float randomZ = Random.Range(0, 8f);
+            shootPoint.localRotation = Quaternion.Euler(0, 0, randomZ);
+        }
+        else if (!lookingRight)
+        {
+            float randomZ = Random.Range(-8f, 0);
+            shootPoint.localRotation = Quaternion.Euler(0, 180, randomZ);
+        }
+    }
+
     void Chase()
     {
         if (chaseMode)
-        {           
+        {
             if (playerTransform.position.x < transform.position.x && lookingRight)
             {
                 ChangeFacing();
@@ -135,11 +161,36 @@ public class EnemyManager : MonoBehaviour
             {
                 ChangeFacing();
             }
-            transform.position = Vector2.MoveTowards(transform.position,playerTransform.position,chaseSpeed * Time.fixedDeltaTime);
-            
+            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, chaseSpeed * Time.fixedDeltaTime);
         }
-        
+
     }
+
+    void Shoot()
+    {
+        if (shootMode)
+        {
+            
+            if (playerTransform.position.x < transform.position.x && lookingRight)
+            {
+                ChangeFacing();
+            }
+            if (playerTransform.position.x > transform.position.x && !lookingRight)
+            {
+                ChangeFacing();
+            }
+            shootTimer -= Time.deltaTime;
+            if (shootTimer <= 0)
+            {
+                ChangeShootPoint();
+                GameObject enemyBulletObject = (GameObject)Instantiate(enemyBulletPrefab, shootPoint.position, Quaternion.identity);
+                enemyBulletObject.GetComponent<Rigidbody2D>().AddForce(shootPoint.right * enemyBulletSpeed, ForceMode2D.Impulse);
+                shootTimer = shootBaseTimer;
+            }
+
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -147,7 +198,5 @@ public class EnemyManager : MonoBehaviour
         {
             ChangeFacing();
         }
-
-        
     }
 }
